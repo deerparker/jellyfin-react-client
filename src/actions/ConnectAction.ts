@@ -37,8 +37,8 @@ export default function connectToServer(
 ): ThunkAction<Promise<boolean>, RootState, null, Action<string>> {
     return async (dispatch) => {
         const normalizedAddress = normalizeAddress(serverAddress);
-        setApiClient(new ApiClient(null, normalizedAddress || '-', "Jellyfin WebNG", "0.0.1", "WebNG", "WebNG", ""));
-
+        setApiClient(new ApiClient(null, normalizedAddress || '-', "Jellyfin Music", "0.0.1", "Android", "Music", ""));
+        
         try {
             await getApiClient().getPublicSystemInfo()
             dispatch(connectSuccessful({ serverAddress }));

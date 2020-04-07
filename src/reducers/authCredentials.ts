@@ -25,6 +25,7 @@ const { reducer, actions } = createSlice({
     reducers: {
         loginSuccessful: (state, action: PayloadAction<LoginSuccessData>) => {
             const { username, userId, token } = action.payload
+            console.log("username: " + username + ", userid:" + userId + ", token: " + token);
             return {
                 username,
                 userId,

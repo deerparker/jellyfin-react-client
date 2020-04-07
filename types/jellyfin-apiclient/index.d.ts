@@ -9,7 +9,14 @@ declare class ApiClient {
     baz: string,
   )
 
-  getPublicSystemInfo: () => Promise<any>
+  //System/Info/Public
+  getPublicSystemInfo: () => Promise<any> 
+
+  //system/Configuration
+  getServerConfiguration: () => Promise<any>
+
+  //getItemImage: (id: string, type: string) => Promise<any>
+
   getResumableItems: (userId: string) => Promise<any>
   authenticateUserByName: (username: string, password: string) => Promise<any>
   setAuthenticationInfo: (accessToken?: string, userId?: string) => void
