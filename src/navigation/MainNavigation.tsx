@@ -20,7 +20,7 @@ import SplashScreen from "react-native-splash-screen";
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-const TopTabNavigator = createMaterialTopTabNavigator();
+//const TopTabNavigator = createMaterialTopTabNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 interface HomeNavigationProps {

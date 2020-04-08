@@ -1,4 +1,4 @@
-import React, { useState,useCallback } from "react";
+import React, { useState,useCallback, useEffect } from "react";
 import { View, TextInput, Button, Image } from "react-native";
 import styles from "./Style";
 import { Formik } from "formik";
@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { Redirect } from "react-router";
 import connectToServer from "../actions/ConnectAction";
 import { useSelector } from "../utilities/storage/store";
+import SplashScreen from "react-native-splash-screen";
+
 
 const EntryComponent: React.FC = () => {
 
@@ -17,6 +19,10 @@ const EntryComponent: React.FC = () => {
     const handleSubmit = useCallback(() => {
         dispatch(connectToServer(server));
     }, [dispatch, server])
+
+    useEffect(() => {
+      SplashScreen.hide(); 
+    }, []);
 
     return connectionStatus.connectStatus ? (
       <Redirect to="/login" />
