@@ -1,13 +1,17 @@
 import React, { useState, useEffect, Component } from "react";
-import { View, Text } from "react-native";
+//import { View, Text } from "react-native";
 
-import styles from "./Style";
+//import globalstyles from "./Style";
 import { getApiClient } from '../utilities/api-client';
 import { useSelector } from "../utilities/storage/store";
 
 import Carousel from 'react-native-snap-carousel';
 import AlbumCarousel from "./AlbumCarousel";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons"
+//import MaterialIcons from "react-native-vector-icons/MaterialIcons"
+
+import { StyleSheet, View, TouchableOpacity, Text, Image } from "react-native";
+import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import MenuItem from "../components/MenuItem";
 
 interface MusicLibraryComponentProps {
     userId: string;
@@ -48,59 +52,221 @@ const MusicLibraryComponent: React.FC = () => {
         })();
     }, [userId])
     */
-        return (
-            <View style={{
-                flex: 1,
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'stretch',
-              }}>
-                 <View style={{flex:0.5, flexDirection: 'row', height: 30, backgroundColor: '#414141'}} >   
-                    <Text style={{color: 'white'}}>{"Music Library"}</Text>
-                    
-                </View>  
-                <View style={{flex:1, flexDirection: 'row', justifyContent: 'center', height: 30, backgroundColor: '#414141'}} >
-                   <Text style={{flex: 1, color: 'white', fontSize: 25}}>{lastPlayedText}</Text>
-                </View>
-                 <View style={{flex:3, flexDirection: 'row', height: 30, backgroundColor: '#101010'}}>
-                   <AlbumCarousel></AlbumCarousel>
-                </View>
-                <View style={{flex:1, flexDirection: 'row', justifyContent: 'center', height: 30, backgroundColor: '#101010'}} >
-                   <MaterialIcons name="favorite" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                   <Text style={{flex: 5, fontSize: 25, color: 'white', justifyContent: 'center'}}>{favouritesText}</Text>
-                   <MaterialIcons name="chevron-right" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                </View>
-                <View style={{flex:1, flexDirection: 'row', justifyContent: 'center', height: 30, backgroundColor: '#101010'}} >
-                   <MaterialIcons name="get-app" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                   <Text style={{flex: 5, fontSize: 25, color: 'white', justifyContent: 'center'}}>{downloadsText}</Text>
-                   <MaterialIcons name="chevron-right" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                </View>
-                <View style={{flex:1, flexDirection: 'row',justifyContent: 'center', height: 30, backgroundColor: '#101010'}} >
-                    <MaterialIcons name="playlist-play" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                    <Text style={{flex: 5, fontSize: 25, color: 'white'}}>{playlistText}</Text>
-                    <MaterialIcons name="chevron-right" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                </View>
-                <View style={{flex:1, flexDirection: 'row', justifyContent: 'center', height: 30, backgroundColor: '#101010'}} >
-                    <MaterialIcons name="album" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                    <Text style={{flex: 5, fontSize: 25, color: 'white'}}>{albumsText}</Text>
-                    <MaterialIcons name="chevron-right" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                </View>
-                <View style={{flex:1, flexDirection: 'row', justifyContent: 'center', height: 30, backgroundColor: '#101010'}} >
-                    <MaterialIcons name="thumb-up" size={size} color={color} style={{flex:1, padding: 20}}/> 
-                    <Text style={{flex: 5, fontSize: 25, color: 'white'}}>{songsText}</Text>
-                    <MaterialIcons name="chevron-right" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                </View>
-                <View style={{flex:1, flexDirection: 'row', justifyContent: 'center', height: 30, backgroundColor: '#101010'}} >
-                    <MaterialIcons name="record-voice-over" size={size} color={color} style={{flex:1, padding: 20}}/> 
-                   <Text style={{flex: 5, fontSize: 25, color: 'white'}}>{artistsText}</Text>
-                   <MaterialIcons name="chevron-right" size={size} color={color} style={{flex:1, padding: 20}}/>  
-                </View>
-                <View style={{flex:1, flexDirection: 'row', justifyContent: 'center', height: 30, backgroundColor: '#101010'}} >
+    //<AlbumCarousel></AlbumCarousel>
 
+    return (
+      <View style={styles.container}>
+        <View style={styles.musicLibraryView}>
+          <View style={styles.musicLibraryInsight}>
+
+            
+            <View style={styles.lastPlayedMusicComponent}>
+              <TouchableOpacity style={styles.lastPlayedMoreComponent}>
+                <View style={styles.lastPlayedTextComponent}>
+                  <Text style={styles.lastPlayedText2}>Last played</Text>
                 </View>
-        
+                <View style={styles.lastPlayedChevronBox}>
+                  <MaterialCommunityIconsIcon
+                    name="chevron-right"
+                    style={styles.lastPlayedChevronIcon}
+                  ></MaterialCommunityIconsIcon>
+                </View>
+              </TouchableOpacity>
+              <View style={styles.musicCarouselComponent}>
+                 <AlbumCarousel></AlbumCarousel>
               </View>
-        );
-}
+            </View>
+
+            
+            <View style={styles.latestMusicComponent}>
+              <TouchableOpacity style={styles.latestMusicMoreComponent}>
+                <View style={styles.latestMusicTextComponent}>
+                  <Text style={styles.latestMusicText2}>Latest Music</Text>
+                </View>
+                <View style={styles.latestMusicChevronBox}>
+                  <MaterialCommunityIconsIcon
+                    name="chevron-right"
+                    style={styles.lastPlayedChevronIcon1}
+                  ></MaterialCommunityIconsIcon>
+                </View>
+              </TouchableOpacity>
+              <View style={styles.musicCarouselComponent}>
+                <TouchableOpacity
+                  onPress={() =>
+                    //props.navigation.navigate("AlbumDetailsComponent")
+                    console.log("Album press button works")
+                  }
+                  style={styles.albumComponent}
+                >
+                  <Image
+                    source={require("../assets/images/grand_archives6.jpg")}
+                    resizeMode="contain"
+                    style={styles.albumArt}
+                  ></Image>
+                  <Text style={styles.albumTitle}>Grand Archives</Text>
+                  <Text style={styles.albumArtist}>Grand Archives</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+          </View>
+          <View style={styles.musicLibraryMenu}>
+            <TouchableOpacity style={styles.musicLibraryMenuItem}>
+              <MenuItem
+                style={styles.musicMenuItem}
+                title="Favourites"
+                icon1Name="cards-heart"
+              ></MenuItem>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.musicLibraryMenuItem}>
+              <MenuItem
+                title="Downloads"
+                icon1Name="download"
+                style={styles.musicMenuItem}
+              ></MenuItem>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.musicLibraryMenuItem}>
+              <MenuItem
+                title="Playlists"
+                icon1Name="playlist-play"
+                style={styles.musicMenuItem}
+              ></MenuItem>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.musicLibraryMenuItem}>
+              <MenuItem
+                title="Albums"
+                icon1Name="album"
+                style={styles.musicMenuItem}
+              ></MenuItem>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.musicLibraryMenuItem}>
+              <MenuItem
+                icon1Name="thumb-up"
+                title="Songs"
+                style={styles.musicMenuItem}
+              ></MenuItem>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.musicLibraryMenuItem}>
+              <MenuItem
+                title="Artists"
+                icon1Name="artist"
+                style={styles.musicMenuItem}
+              ></MenuItem>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    );
+  }
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "rgba(0,0,0,1)"
+    },
+    musicLibraryView: {
+      flex: 1
+    },
+    musicLibraryInsight: {
+      flex: 0.6
+    },
+    lastPlayedMusicComponent: {
+      flex: 0.5
+    },
+    lastPlayedMoreComponent: {
+      flex: 0.2,
+      flexDirection: "row"
+    },
+    lastPlayedTextComponent: {
+      flex: 0.85,
+      paddingTop: 0,
+      paddingBottom: 0,
+      justifyContent: "center"
+    },
+    lastPlayedText2: {
+      height: 20,
+      color: "rgba(255,255,255,1)",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      fontSize: 20,
+      fontFamily: "noto-sans-700"
+    },
+    lastPlayedChevronBox: {
+      flex: 0.15,
+      justifyContent: "center"
+    },
+    lastPlayedChevronIcon: {
+      color: "rgba(255,255,255,1)",
+      fontSize: 38,
+      alignSelf: "center"
+    },
+    musicCarouselComponent: {
+      flex: 0.8,
+      flexDirection: "row"
+    },
+    latestMusicComponent: {
+      flex: 0.5
+    },
+    latestMusicMoreComponent: {
+      flex: 0.2,
+      flexDirection: "row"
+    },
+    latestMusicTextComponent: {
+      flex: 0.85,
+      paddingRight: 0,
+      paddingLeft: 0
+    },
+    latestMusicText2: {
+      color: "rgba(255,255,255,1)",
+      fontSize: 20,
+      fontFamily: "noto-sans-700",
+      marginTop: 10
+    },
+    latestMusicChevronBox: {
+      flex: 0.15,
+      justifyContent: "center"
+    },
+    lastPlayedChevronIcon1: {
+      color: "rgba(255,255,255,1)",
+      fontSize: 38,
+      alignSelf: "center"
+    },
+    albumComponent: {
+      width: 126,
+      height: 149
+    },
+    albumArt: {
+      width: 115,
+      height: 112,
+      marginTop: 2,
+      marginLeft: 3
+    },
+    albumTitle: {
+      color: "rgba(255,255,255,1)",
+      alignItems: "flex-start",
+      fontFamily: "noto-sans-700",
+      marginTop: 4,
+      marginLeft: 6
+    },
+    albumArtist: {
+      color: "rgba(162,162,162,1)",
+      fontSize: 12,
+      fontFamily: "noto-sans-regular",
+      marginTop: 3,
+      marginLeft: 6
+    },
+    musicLibraryMenu: {
+      flex: 0.4,
+      margin: 5
+    },
+    musicLibraryMenuItem: {
+      flex: 1
+    },
+    musicMenuItem: {
+    //  width: 360,
+      flex: 1,
+      margin: 5
+    }
+  });
 
 export default MusicLibraryComponent;

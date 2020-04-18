@@ -22,8 +22,9 @@ class AlbumCarousel extends Component {
 
     render () {
         return (
-            <View>
-                <View style={{
+            <View style={{flex: 1}}>
+                <View style={{flex:1
+                    
 /*                     transform: [{
                         rotate: '0deg'
                     }] */
